@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Au Pays d'Oc - Cave à Vins Péronne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #1a1f2e;
+        --accent: #d4af37;
+        --bordeaux: #8b2635;
+        --text: #2d2d2d;
+        --text-light: #6b7280;
+        --white: #ffffff;
+        --bg-light: #fafafa;
+
+        --font-serif: "Playfair Display", serif;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        line-height: 1.6;
+        color: var(--text);
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-on-scroll {
+        opacity: 0;
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      .animate-delay-1 {
+        animation-delay: 0.1s;
+      }
+      .animate-delay-2 {
+        animation-delay: 0.2s;
+      }
+      .animate-delay-3 {
+        animation-delay: 0.3s;
+      }
+
+      /* BANDEAU DÉMO */
+      .demo-banner {
+        background: #667eea;
+        color: white;
+        text-align: center;
+        padding: 8px 20px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      /* HEADER */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(26, 31, 46, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+      }
+
+      nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 16px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--white);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--white);
+        font-weight: 400;
+        font-size: 14px;
+        text-decoration: none;
+        transition: color 0.3s;
+        letter-spacing: 0.5px;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      .burger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+      }
+
+      .burger span {
+        width: 25px;
+        height: 2px;
+        background: var(--white);
+        border-radius: 2px;
+      }
+
+      /* HERO BORDEAUX UNI */
+      .hero {
+        height: 80vh;
+        background: linear-gradient(135deg, #6b1f2e 0%, var(--bordeaux) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        padding: 0 40px;
+      }
+
+      .hero-content {
+        max-width: 900px;
+      }
+
+      .hero-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 {
+        font-family: var(--font-serif);
+        font-size: 4.5rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+        line-height: 1.1;
+      }
+
+      .hero h1 .accent-word {
+        color: var(--accent);
+        font-style: italic;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        opacity: 0.95;
+        line-height: 1.8;
+      }
+
+      .hero-btn {
+        display: inline-block;
+        padding: 16px 42px;
+        background: transparent;
+        color: var(--accent);
+        border: 2px solid var(--accent);
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+      }
+
+      .hero-btn:hover {
+        background: var(--accent);
+        color: var(--bordeaux);
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 80px 40px;
+      }
+
+      .section-white {
+        background: var(--white);
+      }
+
+      .section-dark {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 12px;
+      }
+
+      .section-title {
+        font-family: var(--font-serif);
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .section-dark .section-title {
+        color: var(--white);
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.7;
+      }
+
+      .section-dark .section-description {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      /* SERVICES CARDS */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 24px;
+      }
+
+      .service-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 40px 32px;
+        transition: all 0.4s ease;
+        cursor: pointer;
+      }
+
+      .service-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--accent);
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2);
+      }
+
+      .service-number {
+        font-family: var(--font-serif);
+        font-size: 2.5rem;
+        color: var(--accent);
+        opacity: 0.4;
+        font-weight: 700;
+        margin-bottom: 20px;
+        transition: opacity 0.3s;
+      }
+
+      .service-card:hover .service-number {
+        opacity: 1;
+      }
+
+      .service-card h3 {
+        font-family: var(--font-serif);
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+        color: var(--white);
+      }
+
+      .service-card p {
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.7;
+        font-size: 15px;
+      }
+
+      /* ABOUT avec liste en cards */
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .about-text h2 {
+        font-family: var(--font-serif);
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+        line-height: 1.2;
+      }
+
+      .about-text p {
+        font-size: 1.05rem;
+        color: var(--text-light);
+        margin-bottom: 32px;
+        line-height: 1.7;
+      }
+
+      /* LISTE EN CARDS STYLÉES */
+      .about-list {
+        list-style: none;
+        display: grid;
+        gap: 16px;
+      }
+
+      .about-list li {
+        padding: 20px 24px;
+        background: var(--bg-light);
+        border-left: 4px solid var(--accent);
+        font-size: 15px;
+        color: var(--text);
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.3s;
+      }
+
+      .about-list li:hover {
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transform: translateX(8px);
+      }
+
+      .about-image {
+        height: 500px;
+        background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+          url("https://res.cloudinary.com/dlnbsf2ed/image/upload/v1768375993/IMG_8111_ycu9rm.jpg")
+            no-repeat center center;
+        background-size: cover;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      /* INFO CARD */
+      .info-card {
+        background: var(--accent);
+        color: var(--white);
+        padding: 50px;
+        border-radius: 12px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .info-card h2 {
+        font-family: var(--font-serif);
+        font-size: 2.2rem;
+        margin-bottom: 32px;
+        text-align: center;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 28px;
+      }
+
+      .info-item {
+        text-align: center;
+      }
+
+      .info-icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+      }
+
+      .info-label {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        opacity: 0.9;
+      }
+
+      .info-value {
+        font-size: 1.05rem;
+        line-height: 1.5;
+      }
+
+      .info-value a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      /* CTA */
+      .cta {
+        text-align: center;
+        padding: 70px 40px;
+      }
+
+      .cta h2 {
+        font-family: var(--font-serif);
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--white);
+      }
+
+      .cta p {
+        font-size: 1.15rem;
+        margin-bottom: 36px;
+        opacity: 0.9;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-btn {
+        display: inline-block;
+        padding: 16px 42px;
+        background: var(--accent);
+        color: var(--primary);
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+      }
+
+      .cta-btn:hover {
+        background: var(--white);
+        transform: translateY(-2px);
+      }
+
+      /* DISCLAIMER */
+      .disclaimer {
+        background: #fef3c7;
+        color: #92400e;
+        padding: 14px;
+        text-align: center;
+        font-size: 12px;
+        font-style: italic;
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--primary);
+        color: var(--white);
+        padding: 60px 40px 32px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 48px;
+        margin-bottom: 48px;
+      }
+
+      .footer-section h3 {
+        font-family: var(--font-serif);
+        margin-bottom: 20px;
+        font-size: 17px;
+        color: var(--accent);
+      }
+
+      .footer-section p,
+      .footer-section a {
+        color: rgba(255, 255, 255, 0.7);
+        display: block;
+        margin-bottom: 10px;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .footer-section a:hover {
+        color: var(--accent);
+      }
+
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 13px;
+      }
+
+      .watermark {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .watermark a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 968px) {
+        .nav-links {
+          display: none;
+        }
+
+        .burger {
+          display: flex;
+        }
+
+        .hero h1 {
+          font-size: 3rem;
+        }
+
+        .section-title {
+          font-size: 2.3rem;
+        }
+
+        section {
+          padding: 60px 24px;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .about-image {
+          height: 350px;
+          order: -1;
+        }
+
+        .info-card {
+          padding: 36px 24px;
+        }
+
+        .cta {
+          padding: 60px 24px;
+        }
+
+        .cta h2 {
+          font-size: 2.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- BANDEAU DÉMO -->
+    <div class="demo-banner">
+      Démo créée par [TON NOM] - Ceci n'est pas le site officiel d'Au Pays d'Oc
+    </div>
+
+    <!-- HEADER -->
+    <header>
+      <nav>
+        <div class="logo">Au Pays d'Oc</div>
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO BORDEAUX -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-label">Bienvenue à la cave</div>
+        <h1>
+          L'Art du Vin & de la <span class="accent-word">Gourmandise</span>
+        </h1>
+        <p>
+          Plus de 20 ans d'expertise pour vous conseiller. Vins, champagnes,
+          bières artisanales et produits régionaux de qualité.
+        </p>
+        <a href="#contact" class="hero-btn">Nous découvrir</a>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section-dark" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Nos Services</div>
+          <h2 class="section-title">Ce que nous proposons</h2>
+          <p class="section-description">
+            Des solutions adaptées pour tous vos événements et plaisirs
+            quotidiens.
+          </p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card animate-on-scroll animate-delay-1">
+            <div class="service-number">01</div>
+            <h3>Large sélection de vins</h3>
+            <p>
+              Vins rouges, blancs, rosés en bouteilles ou en vrac. Nous vous
+              conseillons selon vos goûts et votre budget.
+            </p>
+          </div>
+          <div class="service-card animate-on-scroll animate-delay-2">
+            <div class="service-number">02</div>
+            <h3>Location de tireuses</h3>
+            <p>
+              Pour tous vos événements : tireuses sans eau ni gaz sur
+              réservation. Reprise des produits non consommés.
+            </p>
+          </div>
+          <div class="service-card animate-on-scroll animate-delay-3">
+            <div class="service-number">03</div>
+            <h3>Paniers cadeaux</h3>
+            <p>
+              Composez votre panier sur-mesure avec nos vins, champagnes et
+              produits régionaux. Idéal pour vos cadeaux.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section-white" id="apropos">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2>20 ans d'expertise au service des amateurs</h2>
+            <p>
+              Au Pays d'Oc est une cave installée à Péronne depuis plus de 20
+              ans. Nous proposons un large choix de vins et spiritueux de
+              qualité pour les particuliers, professionnels, collectivités et
+              associations.
+            </p>
+            <ul class="about-list">
+              <li>Plus de 20 ans d'expérience dans la région</li>
+              <li>Conseils personnalisés par des passionnés</li>
+              <li>Large choix de vins, champagnes et spiritueux</li>
+              <li>Services pour événements (tireuses, paniers)</li>
+            </ul>
+          </div>
+          <div class="about-image">
+            <img />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT INFO -->
+    <section class="section-white" id="contact">
+      <div class="container">
+        <div class="info-card">
+          <h2>Informations</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-icon">📍</div>
+              <div class="info-label">Adresse</div>
+              <div class="info-value">
+                5 Rue de Madrid<br />ZAC du Mont St Quentin<br />80200 Péronne
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">📞</div>
+              <div class="info-label">Téléphone</div>
+              <div class="info-value">
+                <a href="tel:+33322840942">03 22 84 09 42</a>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">🕒</div>
+              <div class="info-label">Horaires</div>
+              <div class="info-value">Mar - Sam<br />9h-12h / 14h-19h</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-dark cta">
+      <div class="container">
+        <h2>Besoin de conseils ?</h2>
+        <p>
+          Notre équipe vous accueille au magasin ou par téléphone pour vous
+          conseiller selon vos besoins.
+        </p>
+        <a href="tel:+33322840942" class="cta-btn">03 22 84 09 42</a>
+      </div>
+    </section>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+      L'abus d'alcool est dangereux pour la santé, à consommer avec modération.
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Au Pays d'Oc</h3>
+          <p>Cave à vins et spiritueux depuis plus de 20 ans à Péronne.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Navigation</h3>
+          <a href="#services">Services</a>
+          <a href="#apropos">À propos</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>03 22 84 09 42</p>
+          <p>5 Rue de Madrid<br />80200 Péronne</p>
+        </div>
+        <div class="footer-section">
+          <h3>Horaires</h3>
+          <p>Mardi au Samedi</p>
+          <p>9h-12h / 14h-19h</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Au Pays d'Oc. Tous droits réservés.</p>
+        <div class="watermark">
+          Démo créée par <a href="#">La fabrique du code - Développeur Web</a> |
+          Ceci n'est pas le site officiel
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
